@@ -1074,6 +1074,7 @@ open class TerminalView: NSView, NSTextInputClient, NSUserInterfaceValidations, 
             terminal.userScrolling = true
             scrollUp (lines: velocity)
         } else {
+            terminal.userScrolling = false
             scrollDown(lines: velocity)
         }
     }
