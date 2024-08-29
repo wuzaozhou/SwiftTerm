@@ -1071,6 +1071,7 @@ open class TerminalView: NSView, NSTextInputClient, NSUserInterfaceValidations, 
         }
         let velocity = calcScrollingVelocity(delta: Int (abs (event.deltaY)))
         if event.deltaY > 0 {
+            terminal.userScrolling = true
             scrollUp (lines: velocity)
         } else {
             scrollDown(lines: velocity)
