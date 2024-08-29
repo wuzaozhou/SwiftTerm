@@ -1014,7 +1014,7 @@ extension TerminalView {
     
     public func scroll (toPosition: Double)
     {
-        userScrolling = true
+        terminal.userScrolling = true
         let oldPosition = terminal.buffer.yDisp
         
         let maxScrollback = terminal.buffer.lines.count - terminal.rows
