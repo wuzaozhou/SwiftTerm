@@ -1038,7 +1038,7 @@ extension TerminalView {
     func scrollTo (row: Int, notifyAccessibility: Bool = true)
     {
         if row != terminal.buffer.yDisp {
-            
+            terminal.userScrolling = true
             terminal.buffer.yDisp = row
             
             // tell the terminal we want to refresh all the rows
