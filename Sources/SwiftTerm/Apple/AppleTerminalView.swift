@@ -78,7 +78,9 @@ extension TerminalView {
         self.cellDimension = computeFontDimensions ()
         
         let terminalOptions = TerminalOptions(cols: Int(width / cellDimension.width),
-                                              rows: Int(height / cellDimension.height))
+                                              rows: Int(height / cellDimension.height),
+                                              scrollback: 100000000
+                                             )
         
         if terminal == nil {
             terminal = Terminal(delegate: self, options: terminalOptions)
