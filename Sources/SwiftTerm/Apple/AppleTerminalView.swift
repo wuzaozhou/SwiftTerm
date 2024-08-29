@@ -1006,9 +1006,9 @@ extension TerminalView {
     /// </summary>
     public var canScroll: Bool {
         get {
-            return !terminal.buffers.isAlternateBuffer &&
-                terminal.buffer.hasScrollback &&
-                terminal.buffer.lines.count > terminal.rows
+            return false//!terminal.buffers.isAlternateBuffer &&
+                //terminal.buffer.hasScrollback &&
+                //terminal.buffer.lines.count > terminal.rows
         }
     }
     
