@@ -1032,7 +1032,7 @@ extension TerminalView {
         if newScrollPosition != oldPosition {
             scrollTo(row: newScrollPosition)
         }
-        userScrolling = false
+        //userScrolling = false
     }
     
     func scrollTo (row: Int, notifyAccessibility: Bool = true)
