@@ -79,7 +79,7 @@ extension TerminalView {
         
         let terminalOptions = TerminalOptions(cols: Int(width / cellDimension.width),
                                               rows: Int(height / cellDimension.height),
-                                              scrollback: 100000000
+                                              scrollback: 10000
                                              )
         
         if terminal == nil {
