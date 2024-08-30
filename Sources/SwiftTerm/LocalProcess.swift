@@ -179,7 +179,7 @@ public class LocalProcess {
     }
     
     /// Indicates if the child process is currently running
-    public private(set) var running: Bool = false
+    public var running: Bool = false
     
     /**
      * Launches a child process inside a pseudo-terminal
