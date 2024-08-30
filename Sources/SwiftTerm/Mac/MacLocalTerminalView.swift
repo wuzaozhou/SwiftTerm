@@ -170,13 +170,13 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
     }
 
     var startShell: String? = nil
-    
+    private var isFirstReceive = true 
     /**
      * Implements the LocalProcessDelegate.dataReceived method
      */
     open func dataReceived(slice: ArraySlice<UInt8>) {
         let shell = String(data: Data(slice), encoding: .utf8)
-        static var isFirstReceive = true
+
 
         if isFirstReceive == true {
             isFirstReceive = false
