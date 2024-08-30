@@ -169,7 +169,7 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
         processDelegate?.processTerminated(source: self, exitCode: exitCode)
     }
 
-    var startShell: String = nil
+    var startShell: String? = nil
     
     /**
      * Implements the LocalProcessDelegate.dataReceived method
@@ -177,7 +177,7 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
     open func dataReceived(slice: ArraySlice<UInt8>) {
         let shell = String(data: Data(slice), encoding: .utf8)
 
-        if shell == startShell {
+        if shell != nil && shell == startShell {
             process.running = false
         }
         
