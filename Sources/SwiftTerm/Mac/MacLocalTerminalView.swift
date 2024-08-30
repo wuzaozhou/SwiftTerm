@@ -184,7 +184,7 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
             return
         }
 
-        if shell != nil && shell == startShell {
+        if shell != nil && startShell?.contains(shell) == true {
             process.running = false
         }
         
