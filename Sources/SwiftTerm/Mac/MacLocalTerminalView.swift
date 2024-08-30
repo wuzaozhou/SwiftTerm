@@ -171,7 +171,7 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
 
     var startShell: String? = nil
     private var isFirstReceive = true 
-    var isRun = true 
+    public var isRun = true 
     /**
      * Implements the LocalProcessDelegate.dataReceived method
      */
