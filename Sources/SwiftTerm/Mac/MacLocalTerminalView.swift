@@ -176,9 +176,17 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
      */
     open func dataReceived(slice: ArraySlice<UInt8>) {
         let shell = String(data: Data(slice), encoding: .utf8)
+        static var isFirstReceive = true
+
+        if isFirstReceive == true {
+            isFirstReceive = false
+            feed (byteArray: slice)
+            return
+        }
 
         if shell != nil && shell == startShell {
             process.running = false
+            isFirstReceive = true
         }
         
         if startShell == nil {
