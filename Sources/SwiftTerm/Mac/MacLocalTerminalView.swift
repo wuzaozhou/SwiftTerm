@@ -186,8 +186,10 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
             return
         }
 
+
         if shell != nil && startShell?.contains(shell!) == true {
             isRun = false
+            isFirstReceive = true
         }
         
         if startShell == nil {
