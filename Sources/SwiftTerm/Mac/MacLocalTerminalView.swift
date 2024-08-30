@@ -187,9 +187,8 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
         }
 
 
-        if shell != nil && startShell?.contains(shell!) == true {
+        if shell != nil && startShell?.hasPrefix(shell!) == true {
             isRun = false
-            isFirstReceive = true
         }
         
         if startShell == nil {
