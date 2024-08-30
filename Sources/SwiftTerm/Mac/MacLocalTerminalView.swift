@@ -171,6 +171,7 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
 
     var startShell: String? = nil
     private var isFirstReceive = true 
+    var isRun = true 
     /**
      * Implements the LocalProcessDelegate.dataReceived method
      */
@@ -180,12 +181,13 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
 
         if isFirstReceive == true {
             isFirstReceive = false
+            isRun = true
             feed (byteArray: slice)
             return
         }
 
         if shell != nil && startShell?.contains(shell!) == true {
-            process.running = false
+            isRun = false
         }
         
         if startShell == nil {
