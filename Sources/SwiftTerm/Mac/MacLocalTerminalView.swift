@@ -169,7 +169,7 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
         processDelegate?.processTerminated(source: self, exitCode: exitCode)
     }
 
-    var startShell = nil
+    var startShell: String = nil
     
     /**
      * Implements the LocalProcessDelegate.dataReceived method
