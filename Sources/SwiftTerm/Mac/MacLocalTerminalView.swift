@@ -168,12 +168,24 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
     open func processTerminated(_ source: LocalProcess, exitCode: Int32?) {
         processDelegate?.processTerminated(source: self, exitCode: exitCode)
     }
+
+    var startShell = nil
     
     /**
      * Implements the LocalProcessDelegate.dataReceived method
      */
     open func dataReceived(slice: ArraySlice<UInt8>) {
+        let shell = String(data: Data(slice), encoding: .utf8)
+
+        if shell == startShell {
+            process.running = false
+        }
+        
+        if startShell == nil {
+            startShell = shell
+        }
         feed (byteArray: slice)
+
     }
     
     /**
