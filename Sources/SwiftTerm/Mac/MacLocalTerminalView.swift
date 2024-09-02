@@ -169,7 +169,13 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
         processDelegate?.processTerminated(source: self, exitCode: exitCode)
     }
 
-    public var isRun = false 
+    public var isRun = false {
+        didSet
+        {
+            let add = 1
+        }
+    }
+    
 
     override public func send(data: ArraySlice<UInt8>) {
         if (isRun == true) {
