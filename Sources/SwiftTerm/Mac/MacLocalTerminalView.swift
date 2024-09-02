@@ -192,7 +192,7 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
         let shell = (String(data: Data(slice), encoding: .utf8) ?? "").replacingOccurrences(of: " ", with: "")
 
         //if (shell.hasPrefix("python3/Users/") || shell.hasPrefix("python3.9/Users/")) {
-            isRun = true
+        //    isRun = true
         //}
         feed (byteArray: slice)
 
