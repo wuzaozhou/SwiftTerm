@@ -433,12 +433,6 @@ extension TerminalView {
         //res.fixAttributes(in: NSRange(location: 0, length: res.length))
         return ViewLineInfo(attrStr: res, images: line.images)
     }
-
-    public func send(data: ArraySlice<UInt8>)
-    {
-        ensureCaretIsVisible ()
-        terminalDelegate?.send (source: self, data: data)
-    }
     
     /// Apply selection attributes
     /// TODO: Optimize the logic below
@@ -1117,7 +1111,7 @@ extension TerminalView {
     {
         feedPrepare()
         terminal.feed (text: text)
-        feedFinish()
+        feedFinish()ensureCaretIsVisible
     }
          
     /**
