@@ -190,15 +190,14 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
     open func dataReceived(slice: ArraySlice<UInt8>) {
         let shell = (String(data: Data(slice), encoding: .utf8) ?? "").replacingOccurrences(of: " ", with: "")
 
-        if (shell.hasPrefix("python3/Users/") || shell.hasPrefix("python3.9/Users/")) {
+        //if (shell.hasPrefix("python3/Users/") || shell.hasPrefix("python3.9/Users/")) {
             isRun = true
-        }
+        //}
+        feed (byteArray: slice)
 
         if (shell.hasPrefix("使用HDTool")) {
             isRun = false
         }
-        feed (byteArray: slice)
-
     }
     
     /**
