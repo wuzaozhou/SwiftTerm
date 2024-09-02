@@ -174,7 +174,7 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
      * Implements the LocalProcessDelegate.dataReceived method
      */
     open func dataReceived(slice: ArraySlice<UInt8>) {
-        let shell = String(data: Data(slice), encoding: .utf8).replacingOccurrences(of: " ", with: "")
+        let shell = (String(data: Data(slice), encoding: .utf8) ?? "").replacingOccurrences(of: " ", with: "")
 
         if (shell.hasPrefix("python3/Users/") || shell.hasPrefix("python3.9/Users/")) {
             isRun = true
