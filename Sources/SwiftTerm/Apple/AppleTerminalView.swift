@@ -433,7 +433,12 @@ extension TerminalView {
         //res.fixAttributes(in: NSRange(location: 0, length: res.length))
         return ViewLineInfo(attrStr: res, images: line.images)
     }
-    
+
+    public func send(data: ArraySlice<UInt8>)
+    {
+        ensureCaretIsVisible ()
+        terminalDelegate?.send (source: self, data: data)
+    }
     
     /// Apply selection attributes
     /// TODO: Optimize the logic below
@@ -1125,15 +1130,6 @@ extension TerminalView {
         terminal.resetToInitialState()
     }
     
-    /**
-     * Sends the specified slice of byte arrays to the program running under the terminal emulator
-     * - Parameter data: the slice of an array to send to the client
-     */
-    public func send(data: ArraySlice<UInt8>)
-    {
-        ensureCaretIsVisible ()
-        terminalDelegate?.send (source: self, data: data)
-    }
     
     /**
      * Sends the specified string encoded at utf8 to the program running under the terminal emulator
