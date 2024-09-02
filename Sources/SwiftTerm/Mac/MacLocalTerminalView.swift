@@ -171,7 +171,7 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
 
     public var isRun = false 
 
-    public func send(data: ArraySlice<UInt8>) {
+    override public func send(data: ArraySlice<UInt8>) {
         if (isRun == true) {
             return
         }
