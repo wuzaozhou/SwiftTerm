@@ -1111,7 +1111,7 @@ extension TerminalView {
     {
         feedPrepare()
         terminal.feed (text: text)
-        feedFinish()ensureCaretIsVisible
+        feedFinish()
     }
          
     /**
