@@ -169,30 +169,19 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
         processDelegate?.processTerminated(source: self, exitCode: exitCode)
     }
 
-    var startShell: String? = nil
-    private var isFirstReceive = true 
     public var isRun = false 
     /**
      * Implements the LocalProcessDelegate.dataReceived method
      */
     open func dataReceived(slice: ArraySlice<UInt8>) {
-        let shell = String(data: Data(slice), encoding: .utf8)
+        let shell = String(data: Data(slice), encoding: .utf8).replacingOccurrences(of: " ", with: "")
 
-
-        if isFirstReceive == true {
-            isFirstReceive = false
+        if (shell.hasPrefix("python3/Users/") || shell.hasPrefix("python3.9/Users/")) {
             isRun = true
-            feed (byteArray: slice)
-            return
         }
 
-
-        if shell != nil && startShell?.hasPrefix(shell!) == true {
+        if (shell.hasPrefix("使用HDTool")) {
             isRun = false
-        }
-        
-        if startShell == nil {
-            startShell = shell
         }
         feed (byteArray: slice)
 
