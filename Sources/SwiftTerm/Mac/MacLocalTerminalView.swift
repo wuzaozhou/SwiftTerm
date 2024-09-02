@@ -173,10 +173,15 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
     
 
     override public func send(data: ArraySlice<UInt8>) {
+        let shell = (String(data: Data(data), encoding: .utf8) ?? "").replacingOccurrences(of: " ", with: "")
+        if (shell == "\r" || shell == "Y" || shell == "N") {
+            super.send(data: data)
+            return
+        }
         if (isRun == true) {
             return
         }
-        let shell = (String(data: Data(data), encoding: .utf8) ?? "").replacingOccurrences(of: " ", with: "")
+        
         if (shell.hasPrefix("python3/Users/") || shell.hasPrefix("python3.9/Users/")) {
            isRun = true
         }
