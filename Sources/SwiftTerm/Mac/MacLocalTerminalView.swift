@@ -181,7 +181,7 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
         // if (isRun == true) {
         //     return
         // }
-        let shell = (String(data: Data(slice), encoding: .utf8) ?? "").replacingOccurrences(of: " ", with: "")
+        let shell = (String(data: Data(data), encoding: .utf8) ?? "").replacingOccurrences(of: " ", with: "")
         super.send(data: data)
     }
     
