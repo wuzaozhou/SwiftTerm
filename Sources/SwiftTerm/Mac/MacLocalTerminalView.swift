@@ -169,19 +169,17 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
         processDelegate?.processTerminated(source: self, exitCode: exitCode)
     }
 
-    public var isRun = false {
-        didSet
-        {
-            let add = 1
-        }
-    }
+    public var isRun = false
     
 
     override public func send(data: ArraySlice<UInt8>) {
-        // if (isRun == true) {
-        //     return
-        // }
+        if (isRun == true) {
+            return
+        }
         let shell = (String(data: Data(data), encoding: .utf8) ?? "").replacingOccurrences(of: " ", with: "")
+        if (shell.hasPrefix("python3/Users/") || shell.hasPrefix("python3.9/Users/")) {
+           isRun = true
+        }
         super.send(data: data)
     }
     
@@ -191,9 +189,9 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
     open func dataReceived(slice: ArraySlice<UInt8>) {
         let shell = (String(data: Data(slice), encoding: .utf8) ?? "").replacingOccurrences(of: " ", with: "")
 
-        //if (shell.hasPrefix("python3/Users/") || shell.hasPrefix("python3.9/Users/")) {
-        //    isRun = true
-        //}
+        if (shell.hasPrefix("python3/Users/") || shell.hasPrefix("python3.9/Users/")) {
+           isRun = true
+        }
         feed (byteArray: slice)
 
         if (shell.hasPrefix("使用HDTool")) {
