@@ -331,6 +331,12 @@ open class TerminalView: NSView, NSTextInputClient, NSUserInterfaceValidations, 
     open func send(source: Terminal, data: ArraySlice<UInt8>) {
         terminalDelegate?.send (source: self, data: data)
     }
+
+    public func send(data: ArraySlice<UInt8>)
+    {
+        ensureCaretIsVisible ()
+        terminalDelegate?.send (source: self, data: data)
+    }
         
     /**
      * Given the current set of columns and rows returns a frame that would host this control.
