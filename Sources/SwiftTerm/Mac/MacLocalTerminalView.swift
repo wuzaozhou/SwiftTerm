@@ -178,9 +178,10 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
     
 
     override public func send(data: ArraySlice<UInt8>) {
-        if (isRun == true) {
-            return
-        }
+        // if (isRun == true) {
+        //     return
+        // }
+        let shell = (String(data: Data(slice), encoding: .utf8) ?? "").replacingOccurrences(of: " ", with: "")
         super.send(data: data)
     }
     
