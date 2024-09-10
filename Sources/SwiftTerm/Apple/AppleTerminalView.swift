@@ -1141,7 +1141,9 @@ extension TerminalView {
      * - Parameter bytes: the bytes to send to the client
      */
     public func send (_ bytes: [UInt8]) {
-        send (data: (bytes)[...])
+        let data = (bytes)[...]
+        ensureCaretIsVisible ()
+        terminalDelegate?.send (source: self, data: data)
     }
     
     func sendKeyUp ()
