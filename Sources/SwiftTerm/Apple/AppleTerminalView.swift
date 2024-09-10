@@ -1131,7 +1131,9 @@ extension TerminalView {
      */
     public func send (txt: String) {
         let array = [UInt8] (txt.utf8)
-        send (data: array[...])
+        let data = array[...]
+        ensureCaretIsVisible ()
+        terminalDelegate?.send (source: self, data: data)
     }
     
     /**
