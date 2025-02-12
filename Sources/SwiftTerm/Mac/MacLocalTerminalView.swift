@@ -170,6 +170,7 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
     }
 
     public var isRun = false
+    public var shell = ""
     
 
     override public func send(data: ArraySlice<UInt8>) {
@@ -181,7 +182,7 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
         if (isRun == true) {
             return
         }
-        
+        self.shell = shell
         if (shell.hasPrefix("python3/Users/") || shell.hasPrefix("python3.9/Users/")) {
            isRun = true
         }
