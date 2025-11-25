@@ -200,7 +200,7 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
         }
         feed (byteArray: slice)
         print("dataReceived \(shell)")
-        if (shell.hasPrefix("使用HDTool") || shell.constain("Integratingclientprojects")) {
+        if (shell.hasPrefix("使用HDTool") || shell.contains("Integratingclientprojects")) {
             isRun = false
         }
     }
