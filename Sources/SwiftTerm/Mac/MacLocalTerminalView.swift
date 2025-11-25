@@ -199,7 +199,7 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
            isRun = true
         }
         feed (byteArray: slice)
-
+        print("dataReceived \(shell)")
         if (shell.hasPrefix("使用HDTool")) {
             isRun = false
         }
