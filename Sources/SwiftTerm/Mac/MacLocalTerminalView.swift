@@ -179,9 +179,9 @@ open class LocalProcessTerminalView: TerminalView, TerminalViewDelegate, LocalPr
             super.send(data: data)
             return
         }
-        if (isRun == true) {
-            return
-        }
+        // if (isRun == true) {
+        //     return
+        // }
         self.shell = shell
         if (shell.hasPrefix("python3/Users/") || shell.hasPrefix("python3.9/Users/")) {
            isRun = true
