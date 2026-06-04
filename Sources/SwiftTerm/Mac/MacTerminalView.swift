@@ -153,6 +153,37 @@ open class TerminalView: NSView, NSTextInputClient, NSUserInterfaceValidations, 
         super.init (coder: coder)
         setup()
     }
+
+
+    public func scrollToBufferRow(_ row: Int, centered: Bool = true) {
+        let maxScrollback = max(terminal.buffer.lines.count - terminal.rows, 0)
+        let targetRow = centered ? row - terminal.rows / 2 : row
+        let clampedRow = min(max(targetRow, 0), maxScrollback)
+        scrollTo(row: clampedRow)
+    }
+    
+    public func rectForBufferRange(row: Int, col: Int, length: Int) -> NSRect? {
+        let visibleRow = row - terminal.buffer.yDisp
+        guard visibleRow >= 0, visibleRow < terminal.rows else {
+            return nil
+        }
+    
+        let textWidth = getEffectiveWidth(size: bounds.size)
+        let x = CGFloat(col) * cellDimension.width
+        guard x < textWidth else {
+            return nil
+        }
+    
+        let width = min(CGFloat(max(length, 1)) * cellDimension.width, textWidth - x)
+        let y = frame.height - CGFloat(visibleRow + 1) * cellDimension.height
+    
+        return NSRect(
+            x: x,
+            y: y,
+            width: width,
+            height: cellDimension.height
+        )
+    }
     
     private func setup()
     {
